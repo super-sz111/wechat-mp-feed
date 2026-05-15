@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  core:
+    name: Core feed layer (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.11", "3.12"]
+
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      PYTHONPATH: packages/wechat_mp_feed/src
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run unit tests
+        run: python -m unittest packages.wechat_mp_feed.tests.test_mvp packages.wechat_mp_feed.tests.test_taxonomy_file
+
+      - name: Run offline feed demo
+        run: |
+          python -m wechat_mp_feed.cli --db ./work/ci-demo.sqlite demo seed-feed --work-dir ./work/ci-demo
+          python -m wechat_mp_feed.cli run feed --config ./work/ci-demo/feed-config.demo.json
+
+      - name: Run agent smoke fixture
+        run: python -m wechat_mp_feed.cli run agent-smoke --work-dir ./work/agent-smoke-ci

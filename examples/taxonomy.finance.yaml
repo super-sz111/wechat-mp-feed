@@ -1,0 +1,287 @@
+version: 1
+language: zh-CN
+
+source_categories:
+  - id: macro_policy
+    name_zh: 宏观/政策/大类资产
+    aliases_zh: [宏观, 政策, 央行, 财政, 地缘, 大类资产, 资产配置]
+    description_zh: 宏观经济、政策、央行、财政、地缘、海外宏观和大类资产配置相关来源。
+  - id: strategy
+    name_zh: 策略/市场观点
+    aliases_zh: [A股策略, 市场策略, 风格判断, 权益策略, 资金流]
+    description_zh: A股、港股、美股等权益市场策略、风格、仓位和市场观点相关来源。
+  - id: quant
+    name_zh: 金工/量化/基金产品
+    aliases_zh: [金工, 量化, 指数, 衍生品, 基金研究, FOF, ETF, 公募基金]
+    description_zh: 金融工程、量化策略、指数、基金研究、FOF、ETF 和衍生品相关来源。
+  - id: fixed_income
+    name_zh: 固收/FICC/信用
+    aliases_zh: [固收, 债券, 信用, 利率, 转债, FICC, 汇率, 商品]
+    description_zh: 利率、信用、转债、债券市场和固收策略相关来源。
+  - id: industry_research
+    name_zh: 行业研究
+    aliases_zh: [产业研究, 行业跟踪, 赛道研究, 行业比较]
+    description_zh: 以一个或多个行业为主要研究对象的来源。
+  - id: company_research
+    name_zh: 公司研究
+    aliases_zh: [个股研究, 公司跟踪]
+    description_zh: 以公司、个股、财报和经营变化为主要内容的来源。
+  - id: market_infra
+    name_zh: 市场基础设施/监管
+    aliases_zh: [交易所, 指数公司, 中证指数, 上交所, 深交所, 北交所, 监管, 协会]
+    description_zh: 交易所、指数公司、监管机构、行业协会和资本市场基础设施相关来源。
+  - id: finance_thinktank
+    name_zh: 财经智库/高质量观点
+    aliases_zh: [智库, 论坛, 金融四十人, 高质量观点, 投资随笔]
+    description_zh: 财经智库、研究型论坛、深度观点和高质量投资评论来源。
+  - id: industrial
+    name_zh: 产业/科技观察
+    aliases_zh: [产业媒体, 产业链, 专家号]
+    description_zh: 非纯金融但对行业研究有帮助的产业媒体、科技媒体、专家号和垂直领域资讯来源。
+  - id: news
+    name_zh: 财经新闻/资讯
+    aliases_zh: [快讯, 财经新闻, 综合资讯]
+    description_zh: 快讯、综合财经新闻、市场资讯聚合类来源。
+  - id: opinion_kol
+    name_zh: 投资KOL/个人观点
+    aliases_zh: [大V, KOL, 个人观点]
+    description_zh: 个人观点、投资评论、市场观察类个人公众号。
+  - id: recruiting_career
+    name_zh: 金融招聘/职业服务
+    aliases_zh: [招聘, 求职, 实习, 校招, 社招, 内推, career]
+    description_zh: 金融行业招聘、求职、实习、职业发展相关来源，默认不进入 digest 主池。
+  - id: low_signal
+    name_zh: 非金融/低信号内容
+    aliases_zh: [段子, 营销, 噪音, 软文, 活动, 生活, 校友, 医院, 体育]
+    description_zh: 非金融、营销、活动、招聘以外的低信息密度或不适合进入摘要的来源。
+
+article_categories:
+  - id: deep_research
+    name_zh: 深度研究
+    aliases_zh: [深度报告, 专题研究, 系统研究]
+    description_zh: 具有较完整框架、数据和结论的深度研究内容。
+  - id: daily_commentary
+    name_zh: 日常点评
+    aliases_zh: [晨会, 日评, 盘后点评, 快评]
+    description_zh: 日度、盘中、盘后或晨会类简短点评。
+  - id: policy_interpretation
+    name_zh: 政策解读
+    aliases_zh: [政策点评, 会议解读, 监管解读]
+    description_zh: 对政策、监管、会议、文件的分析和影响判断。
+  - id: earnings_review
+    name_zh: 财报点评
+    aliases_zh: [业绩点评, 季报点评, 年报点评]
+    description_zh: 财报、业绩预告、经营数据和盈利预测相关点评。
+  - id: industry_tracking
+    name_zh: 行业跟踪
+    aliases_zh: [行业更新, 景气跟踪, 产业跟踪]
+    description_zh: 行业供需、价格、竞争格局和景气度变化跟踪。
+  - id: company_tracking
+    name_zh: 公司跟踪
+    aliases_zh: [个股跟踪, 公司事件, 订单跟踪]
+    description_zh: 公司新闻、订单、产品、经营变化和个股事件跟踪。
+  - id: data_review
+    name_zh: 数据点评
+    aliases_zh: [数据解读, 高频数据, 价格数据]
+    description_zh: 对宏观、行业、公司或市场数据的点评和解释。
+  - id: roadshow_notes
+    name_zh: 路演纪要
+    aliases_zh: [电话会, 调研纪要, 会议纪要, 交流纪要]
+    description_zh: 路演、电话会、专家会、调研交流等纪要类内容。
+  - id: market_signal
+    name_zh: 市场信号
+    aliases_zh: [交易信号, 资金流, 市场风格, 风格切换]
+    description_zh: 市场风格、资金、交易结构、风险偏好和价格信号。
+  - id: risk_event
+    name_zh: 风险事件
+    aliases_zh: [风险, 黑天鹅, 监管风险, 信用风险]
+    description_zh: 可能影响资产价格或基本面的突发风险事件。
+  - id: overseas_mapping
+    name_zh: 海外映射
+    aliases_zh: [海外对标, 美股映射, 全球映射]
+    description_zh: 海外产业、公司、宏观、市场对国内资产的映射分析。
+  - id: recruiting_event
+    name_zh: 招聘活动
+    aliases_zh: [招聘, 活动, 会议报名, 直播预告]
+    description_zh: 招聘、活动、会议、直播、课程和营销通知。
+  - id: low_signal
+    name_zh: 低信号内容
+    aliases_zh: [低信息密度, 水文, 段子, 软文]
+    description_zh: 低信息密度、营销、重复或不适合进入摘要的内容。
+
+tag_groups:
+  source_attribute:
+    name_zh: 来源属性
+    tags:
+      - id: sell_side
+        name_zh: 卖方
+        aliases_zh: [券商研究, 证券研究, 研究所, 分析师团队]
+      - id: buy_side
+        name_zh: 买方
+        aliases_zh: [基金投研, 资管投研, 私募投研, 公募基金, 投资管理]
+      - id: product_provider
+        name_zh: 基金/资管产品方
+        aliases_zh: [基金公司, 资管公司, ETF发行方, 理财产品]
+      - id: market_infrastructure
+        name_zh: 交易所/指数/监管/协会
+        aliases_zh: [交易所, 指数公司, 监管, 协会, 中证指数, 上交所, 深交所]
+      - id: media
+        name_zh: 财经/产业媒体
+        aliases_zh: [媒体, 新闻, 资讯, 评论]
+      - id: kol
+        name_zh: KOL/个人观点
+        aliases_zh: [大V, KOL, 个人观点, 投资随笔]
+      - id: recruiting
+        name_zh: 招聘/求职
+        aliases_zh: [招聘, 求职, 实习, 校招, 社招, 内推, career]
+      - id: academic_alumni
+        name_zh: 高校/校友/课程
+        aliases_zh: [高校, 大学, 校友, 课程, 讲座]
+      - id: non_finance_org
+        name_zh: 非金融机构
+        aliases_zh: [医院, 体育, 生活, 摄影, 游戏, 交友, 文旅]
+
+  industry:
+    name_zh: 行业
+    tags:
+      - id: banks
+        name_zh: 银行
+        aliases_zh: [商业银行, 银行业]
+      - id: nonbank_finance
+        name_zh: 非银金融
+        aliases_zh: [券商, 保险, 信托, 多元金融]
+      - id: real_estate
+        name_zh: 房地产
+        aliases_zh: [地产, 物业, 房企]
+      - id: consumer
+        name_zh: 消费
+        aliases_zh: [大消费, 必选消费, 可选消费]
+      - id: liquor
+        name_zh: 白酒
+        aliases_zh: [酒, 高端白酒]
+      - id: healthcare
+        name_zh: 医药
+        aliases_zh: [医疗, 医疗服务, 药品]
+      - id: biotech
+        name_zh: 生物科技
+        aliases_zh: [创新药, CXO, 生物医药]
+      - id: internet
+        name_zh: 互联网
+        aliases_zh: [平台经济, 电商, 游戏]
+      - id: media
+        name_zh: 传媒
+        aliases_zh: [内容, 影视, 广告]
+      - id: software
+        name_zh: 软件
+        aliases_zh: [计算机, SaaS, 信创]
+      - id: semiconductor
+        name_zh: 半导体
+        aliases_zh: [芯片, 集成电路, IC]
+      - id: electronics
+        name_zh: 电子
+        aliases_zh: [消费电子, 元器件, PCB]
+      - id: telecom
+        name_zh: 通信
+        aliases_zh: [运营商, 光模块, 通信设备]
+      - id: auto
+        name_zh: 汽车
+        aliases_zh: [整车, 零部件, 智能汽车]
+      - id: ev_battery
+        name_zh: 电池
+        aliases_zh: [锂电, 动力电池, 储能电池]
+      - id: power_equipment
+        name_zh: 电力设备
+        aliases_zh: [电气设备, 电网设备, 逆变器]
+      - id: renewable_energy
+        name_zh: 新能源
+        aliases_zh: [光伏, 风电, 储能, 新能源发电]
+      - id: utilities
+        name_zh: 公用事业
+        aliases_zh: [电力, 燃气, 水务]
+      - id: machinery
+        name_zh: 机械
+        aliases_zh: [设备, 工程机械, 工业母机]
+      - id: defense
+        name_zh: 军工
+        aliases_zh: [国防军工, 航空航天]
+      - id: chemicals
+        name_zh: 化工
+        aliases_zh: [基础化工, 精细化工, 新材料]
+      - id: metals
+        name_zh: 金属
+        aliases_zh: [有色, 钢铁, 铜, 铝]
+      - id: coal
+        name_zh: 煤炭
+        aliases_zh: [动力煤, 焦煤]
+      - id: oil_gas
+        name_zh: 石油天然气
+        aliases_zh: [石油, 天然气, 油服]
+      - id: agriculture
+        name_zh: 农业
+        aliases_zh: [农林牧渔, 生猪, 种业]
+      - id: transportation
+        name_zh: 交通运输
+        aliases_zh: [交运, 航运, 航空, 快递]
+      - id: construction
+        name_zh: 建筑建材
+        aliases_zh: [建筑, 建材, 水泥, 玻璃]
+
+  asset:
+    name_zh: 资产市场
+    tags:
+      - id: a_share
+        name_zh: A股
+        aliases_zh: [A股市场, 沪深, 中国股票]
+      - id: hk_stock
+        name_zh: 港股
+        aliases_zh: [H股, 香港市场]
+      - id: us_stock
+        name_zh: 美股
+        aliases_zh: [美国股票, 纳斯达克]
+      - id: bond
+        name_zh: 债券
+        aliases_zh: [利率债, 信用债, 转债]
+      - id: commodity
+        name_zh: 商品
+        aliases_zh: [大宗商品, 商品期货]
+      - id: fx
+        name_zh: 外汇
+        aliases_zh: [汇率, 人民币汇率, 美元]
+
+  topic:
+    name_zh: 主题
+    tags:
+      - id: ai
+        name_zh: AI
+        aliases_zh: [人工智能, 大模型, AIGC]
+      - id: robotics
+        name_zh: 机器人
+        aliases_zh: [人形机器人, 工业机器人]
+      - id: export_control
+        name_zh: 出口管制
+        aliases_zh: [制裁, 禁运, 科技封锁]
+      - id: policy_support
+        name_zh: 政策支持
+        aliases_zh: [政策扶持, 产业政策]
+      - id: price_cycle
+        name_zh: 价格周期
+        aliases_zh: [涨价, 降价, 价格拐点]
+      - id: demand_recovery
+        name_zh: 需求复苏
+        aliases_zh: [补库存, 景气回升]
+      - id: overseas_expansion
+        name_zh: 出海
+        aliases_zh: [海外扩张, 全球化]
+      - id: low_altitude
+        name_zh: 低空经济
+        aliases_zh: [eVTOL, 低空飞行]
+
+importance_thresholds:
+  alert: 0.85
+  digest: 0.65
+  archive: 0.35
+
+llm_policy:
+  allow_only_known_ids: true
+  allow_suggested_new_tags: true
+  suggested_new_tags_require_review: true

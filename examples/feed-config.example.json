@@ -1,0 +1,34 @@
+{
+  "storage": {
+    "path": "./data/mpfeed.sqlite"
+  },
+  "downloader": {
+    "base_url": "http://127.0.0.1:5001",
+    "timeout": 30
+  },
+  "feed": {
+    "tier": "all",
+    "max_sources": 0,
+    "count": 5,
+    "delay_min": 1.0,
+    "delay_max": 3.0,
+    "retries": 2,
+    "backoff_seconds": 3.0,
+    "full": true,
+    "score_limit": 0,
+    "taxonomy": "finance",
+    "content_limit": 0,
+    "content_retention": "content_or_archive",
+    "content_retries": 3,
+    "content_backoff_seconds": 5.0,
+    "content_delay_min": 5.0,
+    "content_delay_max": 10.0,
+    "content_passes": 3,
+    "content_pass_cooldown_seconds": 60.0,
+    "feed_limit": 3000,
+    "work_dir": "./work/feed",
+    "feed_format": "csv",
+    "summary_format": "json",
+    "failures_format": "csv"
+  }
+}

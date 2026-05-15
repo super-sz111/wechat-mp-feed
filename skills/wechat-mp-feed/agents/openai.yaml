@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat MP Feed"
+  short_description: "Operate WeChat Official Account feed workflows"
+  default_prompt: "Use $wechat-mp-feed to run an offline feed smoke test and summarize the results."

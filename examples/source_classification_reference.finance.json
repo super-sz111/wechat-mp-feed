@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-13",
+  "description": "Synthetic finance source classification examples. Contains no private account list, article evidence, user review data, or local run metadata.",
+  "accounts": [
+    {
+      "account_name": "示例策略研究",
+      "inclusion_tier": "core_finance",
+      "primary_domain": "strategy",
+      "source_attribute": "sell_side",
+      "tags": ["sell_side"]
+    },
+    {
+      "account_name": "示例宏观观察",
+      "inclusion_tier": "core_finance",
+      "primary_domain": "macro_policy",
+      "source_attribute": "sell_side",
+      "tags": ["sell_side"]
+    },
+    {
+      "account_name": "示例量化笔记",
+      "inclusion_tier": "core_finance",
+      "primary_domain": "quant",
+      "source_attribute": "research_independent",
+      "tags": ["independent_research"]
+    },
+    {
+      "account_name": "示例基金平台",
+      "inclusion_tier": "finance_related",
+      "primary_domain": "fund_product",
+      "source_attribute": "product_provider",
+      "tags": ["product_provider"]
+    },
+    {
+      "account_name": "示例财经媒体",
+      "inclusion_tier": "finance_related",
+      "primary_domain": "news",
+      "source_attribute": "media",
+      "tags": ["media"]
+    }
+  ],
+  "count": 5
+}
