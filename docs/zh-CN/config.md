@@ -115,7 +115,7 @@ downloader 由用户自行部署和登录。登录态由 downloader 或用户配
 
 ## 常用运行方式
 
-离线 demo：
+离线示例：
 
 ```bash
 PYTHONPATH=packages/wechat_mp_feed/src python3 -m wechat_mp_feed.cli \

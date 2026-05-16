@@ -22,7 +22,7 @@ from wechat_mp_feed.cli import (
     with_retries,
 )
 from wechat_mp_feed.content import normalize_article_content
-from wechat_mp_feed.media_import import clean_account_names, normalize_crop_filter
+from wechat_mp_feed.media_import import clean_account_names, normalize_crop_filter, normalize_scale_filter
 from wechat_mp_feed.name_match import names_equivalent, search_query_variants
 from wechat_mp_feed.onboarding import latest_probe_article
 from wechat_mp_feed.policy import retryable_status, tier_policy
@@ -109,6 +109,9 @@ class MVPTest(unittest.TestCase):
         self.assertEqual(names, ["示例策略研究", "示例市场发布"])
         self.assertEqual(clean_account_names(["示例金工研究", "示例金工研究", "单帧噪声"], min_occurrences=2), ["示例金工研究"])
         self.assertEqual(normalize_crop_filter("1,2,300,400"), "crop=300:400:1:2")
+        self.assertEqual(normalize_scale_filter(480), "scale=480:-1")
+        with self.assertRaises(ValueError):
+            normalize_scale_filter(120)
 
     def test_account_name_matching_ignores_spaces_and_common_variants(self):
         self.assertTrue(names_equivalent("智堡 Mikko", "智堡Mikko"))

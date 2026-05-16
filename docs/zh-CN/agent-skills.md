@@ -1,6 +1,6 @@
 # Agent Skill 包
 
-`wechat-mp-feed` 现在有一个正式的通用 agent skill 包：
+`wechat-mp-feed` 提供正式的通用 agent skill 包：
 
 ```text
 skills/wechat-mp-feed/
@@ -8,13 +8,13 @@ skills/wechat-mp-feed/
 
 适用对象包括 Claude Code、Codex 风格 skill loader，以及其他可以注册 markdown workflow instructions 的 agent 系统。
 
-Skill 是这个项目的一等入口。CLI 负责执行，Skill 负责告诉 agent 操作顺序：跑什么命令、读哪些输出、遇到登录失效如何处理，以及如何从 feed 数据进入金融投研工作流。
+Skill 是项目的一等入口。CLI 负责执行，Skill 说明 agent 操作顺序：执行哪些命令、读取哪些输出、如何处理登录失效，以及如何从 feed 数据进入金融投研工作流。
 
 ## Skill 做什么
 
-这个 skill 告诉 agent 如何：
+这个 skill 说明以下操作：
 
-- 运行离线 feed smoke test；
+- 运行离线 feed 验证；
 - 从名单、截图、录屏或文章链接批量接入首次公众号列表；
 - 调用 `mpfeed run feed --config`；
 - 读取 feed 健康状态和失败表；
@@ -45,7 +45,7 @@ skills/wechat-mp-feed/
 └── references/
 ```
 
-`SKILL.md` 保持简洁，细节放在 `references/` 里，agent 需要时再读取。
+`SKILL.md` 保持简洁，细节放在 `references/` 中，agent 按需读取。
 
 ## 不同平台
 
@@ -55,13 +55,13 @@ skills/wechat-mp-feed/
 
 ## 第一次验证
 
-让 agent 执行：
+验证指令：
 
 ```text
-Use the wechat-mp-feed skill to run the offline smoke test and summarize the report.
+Use the wechat-mp-feed skill to run the offline validation test and summarize the report.
 ```
 
-agent 应该运行：
+预期命令：
 
 ```bash
 mpfeed run agent-smoke --work-dir ./work/agent-smoke

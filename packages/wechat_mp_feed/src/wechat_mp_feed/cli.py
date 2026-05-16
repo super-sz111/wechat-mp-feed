@@ -85,6 +85,7 @@ def build_parser() -> argparse.ArgumentParser:
     import_video.add_argument("--ocr", choices=("paddle",), default="paddle")
     import_video.add_argument("--fps", type=float, default=1.0, help="Frames per second to OCR.")
     import_video.add_argument("--crop", help="Optional crop rectangle as x,y,w,h before OCR.")
+    import_video.add_argument("--scale-width", type=int, help="Optional output frame width before OCR, preserving aspect ratio.")
     import_video.add_argument("--lang", default="ch", help="PaddleOCR language, default: ch.")
     import_video.add_argument("--source-type", default="recording")
     import_video.add_argument("--dedupe-threshold", type=float, default=0.92)
@@ -493,6 +494,7 @@ def build_parser() -> argparse.ArgumentParser:
     run_onboarding.add_argument("--ocr", choices=("paddle",), default="paddle")
     run_onboarding.add_argument("--fps", type=float, default=2.0)
     run_onboarding.add_argument("--crop", help="Optional crop rectangle as x,y,w,h before OCR.")
+    run_onboarding.add_argument("--scale-width", type=int, help="Optional output frame width before OCR, preserving aspect ratio.")
     run_onboarding.add_argument("--lang", default="ch")
     run_onboarding.add_argument("--dedupe-threshold", type=float, default=0.92)
     run_onboarding.add_argument("--min-occurrences", type=int, default=2)
@@ -1009,6 +1011,7 @@ def cmd_import_video(args: argparse.Namespace) -> int:
         fps=args.fps,
         ocr=args.ocr,
         crop=args.crop,
+        scale_width=args.scale_width,
         lang=args.lang,
         save_frames=args.save_frames,
         dedupe_threshold=args.dedupe_threshold,
@@ -1021,6 +1024,7 @@ def cmd_import_video(args: argparse.Namespace) -> int:
             "ocr": args.ocr,
             "fps": args.fps,
             "crop": args.crop,
+            "scale_width": args.scale_width,
         }
         for name in ocr_result["names"]
     ]
@@ -3137,6 +3141,7 @@ def import_onboarding_input(store: Store, args: argparse.Namespace) -> dict | No
             fps=args.fps,
             ocr=args.ocr,
             crop=args.crop,
+            scale_width=args.scale_width,
             lang=args.lang,
             save_frames=args.save_frames,
             dedupe_threshold=args.dedupe_threshold,
@@ -3149,6 +3154,7 @@ def import_onboarding_input(store: Store, args: argparse.Namespace) -> dict | No
                 "ocr": args.ocr,
                 "fps": args.fps,
                 "crop": args.crop,
+                "scale_width": args.scale_width,
             }
             for name in ocr_result["names"]
         ]

@@ -6,7 +6,7 @@
 
 [中文文档](docs/zh-CN/README.md) · [Agent Skill](skills/wechat-mp-feed/SKILL.md) · [CLI](docs/cli.md) · [Finance Taxonomy](docs/finance-taxonomy.md)
 
-[![CI](https://github.com/super-sz111/wechat-mp-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/super-sz111/wechat-mp-feed/actions/workflows/ci.yml)
+[![CI](https://github.com/szwang-dev/wechat-mp-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/szwang-dev/wechat-mp-feed/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](.github/workflows/ci.yml)
@@ -129,7 +129,7 @@ The default install keeps the core feed layer lightweight.
 
 ## Platform Support
 
-The core feed layer is designed for macOS, Linux, and Windows. It uses Python, SQLite, local files, and HTTP adapters; CI runs the unit tests, offline demo, and agent smoke fixture on all three operating systems.
+The core feed layer is designed for macOS, Linux, and Windows. It uses Python, SQLite, local files, and HTTP adapters; CI runs the unit tests, offline demo, and agent validation fixture on all three operating systems.
 
 Optional components have extra environment needs:
 

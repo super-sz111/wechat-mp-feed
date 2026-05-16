@@ -14,7 +14,7 @@ The skill is a first-class interface for this project. The CLI remains the execu
 
 The skill teaches an agent how to:
 
-- run an offline feed smoke test;
+- run an offline feed validation test;
 - onboard large first-run account lists from files, screenshots, recordings, or article URLs;
 - operate `mpfeed run feed --config`;
 - inspect feed health and failures;
@@ -27,7 +27,7 @@ The skill teaches an agent how to:
 An agent using this skill should:
 
 - treat `mpfeed` as the main interface;
-- run `agent-smoke` before claiming the environment is ready;
+- run the `agent-smoke` validation command before claiming the environment is ready;
 - use staged review tables for account identity and classification during first-run onboarding;
 - use reviewed sources as the identity source of truth;
 - read `feed-summary` before summarizing feed health;
@@ -60,7 +60,7 @@ Use this package directly when the agent supports `SKILL.md` folders. Otherwise,
 Ask the agent:
 
 ```text
-Use the wechat-mp-feed skill to run the offline smoke test and summarize the report.
+Use the wechat-mp-feed skill to run the offline validation test and summarize the report.
 ```
 
 The agent should run:

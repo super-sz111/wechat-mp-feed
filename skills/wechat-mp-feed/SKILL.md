@@ -57,7 +57,7 @@ Virtualenv fallback command:
 .venv/bin/mpfeed run agent-smoke --work-dir ./work/agent-smoke
 ```
 
-Offline smoke output:
+Offline validation output:
 
 ```text
 feed-items.csv

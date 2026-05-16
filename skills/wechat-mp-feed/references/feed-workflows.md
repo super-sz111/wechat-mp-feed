@@ -1,6 +1,6 @@
 # Feed Workflows
 
-## Offline Agent Smoke Test
+## Offline Agent Validation
 
 Run:
 

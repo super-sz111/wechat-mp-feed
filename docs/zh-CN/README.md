@@ -2,7 +2,7 @@
 
 `wechat-mp-feed` 用于构建本地、可审核的微信公众号文章流。
 
-这个项目采用 agent-first 的运行模式，并保留明确的用户监督边界。用户控制本地配置、确认不确定的账号身份或分类结果，并在 downloader 需要认证时完成扫码。agent 通过 CLI 和 Skill 编排首次接入、feed 刷新、失败检查、LLM jobs 导出和金融投研工作流生成。
+项目采用 agent-first 的运行模式，并保留明确的用户监督边界。用户控制本地配置、确认不确定的账号身份或分类结果，并在 downloader 需要认证时完成扫码。agent 通过 CLI 和 Skill 编排首次接入、feed 刷新、失败检查、LLM jobs 导出和金融投研工作流生成。
 
 核心流程：
 
@@ -41,7 +41,7 @@ skills/wechat-mp-feed/
 
 支持 `SKILL.md` 的 agent 系统可以直接注册这个目录；其他系统可以把 [SKILL.md](../../skills/wechat-mp-feed/SKILL.md) 作为工作流说明注册给 agent。
 
-Skill 会告诉 agent 如何：
+Skill 说明以下操作：
 
 - 运行 `mpfeed run agent-smoke` 验证集成；
 - 批量接入首次公众号关注列表；
@@ -53,9 +53,9 @@ Skill 会告诉 agent 如何：
 
 详见 [Agent Skill 包](agent-skills.md)。
 
-## 离线 Demo
+## 离线示例
 
-离线 demo 使用合成示例数据，不需要微信认证即可在本地生成 feed 示例输出。
+离线示例使用合成数据，不需要微信认证即可在本地生成 feed 输出。
 
 ```bash
 PYTHONPATH=packages/wechat_mp_feed/src python3 -m wechat_mp_feed.cli \
@@ -76,7 +76,7 @@ work/demo-feed/feed-summary.json
 work/demo-feed/feed-failures.csv
 ```
 
-这个 demo 包含核心金融、金融相关、招聘低信号和正文失败样例，用于了解 feed 层输出形态。
+示例数据包含核心金融、金融相关、招聘低信号和正文失败样例，用于了解 feed 层输出形态。
 
 ## 安装
 
@@ -87,13 +87,13 @@ cd packages/wechat_mp_feed
 python3 -m pip install -e .
 ```
 
-也可以从仓库根目录使用源码路径运行：
+可从仓库根目录使用源码路径运行：
 
 ```bash
 PYTHONPATH=packages/wechat_mp_feed/src python3 -m wechat_mp_feed.cli --help
 ```
 
-需要截图或录屏导入时，再安装 OCR/视频依赖：
+如需截图或录屏导入，安装 OCR/视频依赖：
 
 ```bash
 python3 -m pip install -e "packages/wechat_mp_feed[ocr]"
@@ -101,7 +101,7 @@ python3 -m pip install -e "packages/wechat_mp_feed[ocr]"
 
 ## 平台支持
 
-核心 feed 层面向 macOS、Linux 和 Windows。它主要使用 Python、SQLite、本地文件和 HTTP adapter；CI 会在三个系统上运行单元测试、离线 demo 和 agent smoke fixture。
+核心 feed 层面向 macOS、Linux 和 Windows。它主要使用 Python、SQLite、本地文件和 HTTP adapter；CI 会在三个系统上运行单元测试、离线示例和 agent 验证用例。
 
 可选组件对环境有额外要求：
 
@@ -117,7 +117,7 @@ python3 -m pip install -e "packages/wechat_mp_feed[ocr]"
 ./scripts/bootstrap_wechat_download_api.sh
 ```
 
-扫码登录后验证：
+完成扫码登录后验证：
 
 ```bash
 export WECHAT_DOWNLOAD_API_BASE_URL=http://127.0.0.1:5000

@@ -19,7 +19,7 @@ mpfeed --db ./data/mpfeed.sqlite <command>
 
 ## `demo`
 
-生成合成 demo 数据并离线导出 feed：
+生成合成示例数据并离线导出 feed：
 
 ```bash
 mpfeed --db ./work/demo-feed.sqlite demo seed-feed --work-dir ./work/demo-feed
@@ -50,6 +50,7 @@ mpfeed import url 'https://mp.weixin.qq.com/s?...'
 ```bash
 mpfeed import images screenshots/*.png --ocr paddle
 mpfeed import video wechat_accounts.mp4 --fps 2 --ocr paddle --min-occurrences 2 --names-output accounts.txt --raw-output ocr.json
+mpfeed import video following.mp4 --fps 0.5 --ocr paddle --crop 220,0,900,2556 --scale-width 480 --names-output accounts.txt --raw-output ocr.json
 ```
 
 OCR/视频依赖按需安装：
@@ -57,6 +58,15 @@ OCR/视频依赖按需安装：
 ```bash
 python3 -m pip install -e "packages/wechat_mp_feed[ocr]"
 ```
+
+手机录屏 OCR 建议裁剪账号文字区域并降低帧图宽度：
+
+```bash
+--crop x,y,w,h
+--scale-width 480
+```
+
+`--scale-width 480` 适合容器或 agent 运行时的快速验证；`--scale-width 720` 保留更多细节，适合正式全量接入。
 
 ## `resolve`
 
@@ -139,13 +149,15 @@ mpfeed collect content --tier core --limit 20 --delay-min 3 --delay-max 8
 
 ## `run onboarding`
 
-首次批量接入的一站式入口。
+首次批量接入的统一入口。
 
 ```bash
 mpfeed run onboarding \
   --work-dir ./work/onboarding \
   --source-type onboarding \
-  --names-file accounts.txt
+  --video-file following.mp4 \
+  --crop 220,0,900,2556 \
+  --scale-width 480
 ```
 
 流程：
@@ -160,7 +172,7 @@ mpfeed run onboarding \
 -> 导出 compact review table
 ```
 
-用户修改审核表后，再用 review/apply 或后续 resolver 只处理改动部分。
+审核表完成修改后，使用 review/apply 或后续 resolver 处理改动部分。
 
 ## `run feed`
 
@@ -180,7 +192,7 @@ feed-failures.csv/json
 
 ## `run agent-smoke`
 
-离线验证 agent 能否运行 feed 层并读取输出。
+离线验证 agent 是否能够运行 feed 层并读取输出。
 
 ```bash
 mpfeed run agent-smoke --work-dir ./work/agent-smoke

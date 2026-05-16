@@ -42,6 +42,7 @@ def extract_account_names_from_video(
     fps: float = 1.0,
     ocr: str = "paddle",
     crop: str | None = None,
+    scale_width: int | None = None,
     lang: str = "ch",
     save_frames: str | Path | None = None,
     dedupe_threshold: float = 0.92,
@@ -65,7 +66,7 @@ def extract_account_names_from_video(
         frame_dir = Path(temp_dir.name)
 
     try:
-        frames = extract_frames(video, frame_dir=frame_dir, fps=fps, crop=crop)
+        frames = extract_frames(video, frame_dir=frame_dir, fps=fps, crop=crop, scale_width=scale_width)
         image_result = extract_account_names_from_images(
             frames,
             ocr=ocr,
@@ -78,6 +79,7 @@ def extract_account_names_from_video(
             "video": str(video),
             "fps": fps,
             "crop": crop,
+            "scale_width": scale_width,
             "ocr": ocr,
             "lang": lang,
             "min_occurrences": min_occurrences,
@@ -116,12 +118,20 @@ def extract_account_names_from_images(
     return {"names": names, "count": len(names), "raw_lines": raw_lines}
 
 
-def extract_frames(video_path: Path, frame_dir: Path, fps: float, crop: str | None = None) -> list[Path]:
+def extract_frames(
+    video_path: Path,
+    frame_dir: Path,
+    fps: float,
+    crop: str | None = None,
+    scale_width: int | None = None,
+) -> list[Path]:
     ffmpeg = find_ffmpeg()
     output_pattern = frame_dir / "frame_%06d.png"
     filters = [f"fps={fps:g}"]
     if crop:
         filters.append(normalize_crop_filter(crop))
+    if scale_width:
+        filters.append(normalize_scale_filter(scale_width))
 
     command = [
         ffmpeg,
@@ -289,6 +299,12 @@ def normalize_crop_filter(crop: str) -> str:
         raise ValueError("--crop must be x,y,w,h")
     x, y, width, height = parts
     return f"crop={width}:{height}:{x}:{y}"
+
+
+def normalize_scale_filter(width: int) -> str:
+    if width < 160:
+        raise ValueError("--scale-width must be at least 160")
+    return f"scale={width}:-1"
 
 
 def write_ocr_json(path: str | Path, payload: dict[str, Any]) -> None:

@@ -68,7 +68,7 @@ Minimum requirement for any agent:
 After installing into any agent system, ask the agent to:
 
 ```text
-Use the wechat-mp-feed skill to run the offline smoke test and summarize the report.
+Use the wechat-mp-feed skill to run the offline validation test and summarize the report.
 ```
 
 The agent should run:

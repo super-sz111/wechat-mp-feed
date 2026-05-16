@@ -28,7 +28,7 @@ mpfeed init --config config.yaml --taxonomy examples/taxonomy.finance.yaml
 
 ## `demo`
 
-Create a small synthetic demo database. This is meant for first-time users and CI-style smoke tests, and runs fully offline.
+Create a small synthetic demo database. This is meant for first-time users and CI validation, and runs fully offline.
 
 ```bash
 mpfeed --db ./work/demo-feed.sqlite demo seed-feed --work-dir ./work/demo-feed
@@ -69,6 +69,7 @@ Behavior:
 ```bash
 mpfeed import images screenshots/*.png --ocr paddle
 mpfeed import video wechat_accounts.mp4 --fps 2 --ocr paddle --min-occurrences 2 --names-output accounts.txt --raw-output ocr.json
+mpfeed import video following.mp4 --fps 0.5 --ocr paddle --crop 220,0,900,2556 --scale-width 480 --names-output accounts.txt --raw-output ocr.json
 ```
 
 Local OCR is optional and should be installed only where needed:
@@ -96,6 +97,7 @@ Useful options:
 
 ```bash
 --crop x,y,w,h
+--scale-width 480
 --lang zh
 --dedupe-threshold 0.88
 --min-occurrences 2
@@ -108,6 +110,7 @@ Recommended first-run recording settings:
 
 - `--fps 1` for a low-cost preview run.
 - `--fps 2 --min-occurrences 2` for a slower but higher-recall onboarding pass.
+- Use `--crop` to keep only the account-name area, then `--scale-width 480` or `--scale-width 720` to make PaddleOCR practical in an agent/container runtime.
 - Use `--names-output` / `--raw-output` for large lists; terminal output stays summarized.
 
 ## `resolve`
@@ -340,7 +343,7 @@ Important behavior:
 
 ## `run agent-smoke`
 
-Run an offline agent smoke test with synthetic feed data:
+Run offline agent validation with synthetic feed data:
 
 ```bash
 mpfeed run agent-smoke --work-dir ./work/agent-smoke
@@ -427,6 +430,8 @@ Recommended large-list sequence:
 mpfeed run onboarding \
   --base-url http://127.0.0.1:5001 \
   --video-file ./following.mp4 \
+  --crop 220,0,900,2556 \
+  --scale-width 480 \
   --source-type recording \
   --work-dir ./work
 ```
